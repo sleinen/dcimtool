@@ -61,7 +61,7 @@ class apiEngine:
         response = self.client.post(self.netboxAPIurl, data=sObject, headers=self.submitHeaders)
         if outputResponseFlag:
             print("! SUCCESSFUL POST OF THE FOLLOWING: \'" + response.text + "\'")
-            debugOutputFile.write(str(response.text)) 
+            debugOutputFile.write(str(response.text))
 
     def netboxRetrieve(self):
         retrievalURL = self.netboxAPIurl + "?limit=100000"
@@ -90,7 +90,7 @@ class QueryEngine:
         ### Instantiate cursor and apiEngine ###
         self.dbCursor = self.dbConnector.cursor()
         self.submitInstance = apiEngine(sType, sSubType)
-   
+
     def dbQuery(self, queryString, outputMapping, slugEnable, migrationType):
         self.dbCursor.execute(queryString)
         rows = self.dbCursor.fetchall()
@@ -131,11 +131,11 @@ class QueryEngine:
 
 postResponses = collections.OrderedDict()
 
-with open(queryMapFile) as json_file:  
+with open(queryMapFile) as json_file:
     data = json.load(json_file)
     reQueryLookupDict = data['reQueryLookupDict']
     for mType in data['results']:
-        
+
         ### set parameters for the submission and query engine based on the map file ###
         migrationType = mType['querySubObjectID']
         sType = mType['sType']
@@ -143,7 +143,7 @@ with open(queryMapFile) as json_file:
         queryString = mType['queryString']
         outputMapping = mType['outputMapping']
         slugEnable = mType['slugEnable']
-        
+
         ### submission mapping debug code ###
         if ingestDebugFlag:
             print("\n")
@@ -157,8 +157,8 @@ with open(queryMapFile) as json_file:
                     print("\t" * 1 + " - \'" + outParam + "\' = \'" + str(outputMapping[outParam]) + "\'")
                 else:
                     print("\t" * 1 + " - \'" + outParam + "\' = SST \'" + outputMapping[outParam]['sSubType'] + "\' @ \'" + str(outputMapping[outParam]['reQueryIndexHeader']) + "\'")
-        
-        ### code for submitting the request group ###    
+
+        ### code for submitting the request group ###
         queryEngineInstance = QueryEngine(sType, sSubType)
         postResponses[sSubType] = queryEngineInstance.dbQuery(queryString, outputMapping, slugEnable, migrationType)
         print("Successfully Posted: " + str(postCountDict[sSubType]) + "Items for type: " + str(sSubType))
