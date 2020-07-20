@@ -107,6 +107,8 @@ class QueryEngine:
                             d[outParam] = False
                     else:
                         d[outParam] = col_value
+                        if outParam == 'asset_tag' and col_value == '':
+                            del d[outParam]
                 else:
                     reQueryObject = row[outputMapping[outParam]['reQueryIndexHeader']]
                     reQuerySubType = outputMapping[outParam]['sSubType']
