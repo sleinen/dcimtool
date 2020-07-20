@@ -62,7 +62,7 @@
                     "sSubType":"rack-groups/",
                     "reQueryIndexHeader":2
                 },
-                "u_height":3
+                "u_height":3,
                 "desc_unit":4
             },
             "slugEnable":true
