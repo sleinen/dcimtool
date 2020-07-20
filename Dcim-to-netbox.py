@@ -9,15 +9,15 @@ import dns.resolver
 import dns.zone
 
 ### OpenDCIM Database Connection Settings
-dbHost = "openDcimDbHost.example.com"
-dbUser = "openDcimDbUser"
-dbPasswd = "openDcimDbPassword"
-dbName = "OpenDcimDbName"
+dbHost = '{{ opendcim_db_host }}'
+dbUser = '{{ opendcim_db_username }}'
+dbPasswd = '{{ opendcim_db_password }}'
+dbName = '{{ opendcim_db_name }}'
 
 ### Netbox API connection Settings ###
-baseNetboxUrl = "http://netbox-app-p01.example.com:80/"
-netboxToken = 'NetboxRootUserApiToken'
-netboxUser = "NetboxAdminUser"
+baseNetboxUrl = '{{ netbox_base_url }}'
+netboxToken = '{{ netbox_token }}'
+netboxUser = '{{ netbox_username }}'
 
 ### Mapfile where the queries and the API output locations variables are set ###
 queryMapFile = 'QueryMap.json'
