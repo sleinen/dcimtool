@@ -99,15 +99,14 @@ class QueryEngine:
             d = collections.OrderedDict()
             for outParam in outputMapping:
                 if isinstance(outputMapping[outParam], int):
+                    col_value = row[(outputMapping[outParam])]
                     if outParam == 'subdevice_role':
-                        if row[(outputMapping[outParam])] == '1':
+                        if col_value == '1':
                             d[outParam] = True
-                        elif row[(outputMapping[outParam])] == '0':
+                        elif col_value == '0':
                             d[outParam] = False
-                        else:
-                            del d[outParam]
                     else:
-                        d[outParam] = row[(outputMapping[outParam])]
+                        d[outParam] = col_value
                 else:
                     reQueryObject = row[outputMapping[outParam]['reQueryIndexHeader']]
                     reQuerySubType = outputMapping[outParam]['sSubType']
