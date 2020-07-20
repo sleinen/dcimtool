@@ -119,7 +119,7 @@ class QueryEngine:
                     #print("RQRESULT: " + str(reQueryResult))
                     d[outParam] = reQueryResult
             if slugEnable:
-                d['slug'] = slugify(row[0])
+                d['slug'] = slugify(row[0], only_ascii=True)
             objects_list.append(d)
         if dcimOutputEnableFlag:
             for nbDataObject in objects_list:
