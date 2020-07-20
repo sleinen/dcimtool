@@ -91,7 +91,7 @@
             "querySubObjectID":"Device Types",
             "sType":"dcim/",
             "sSubType":"device-types/",
-            "queryString":"SELECT dt.Model, mf.Name, dt.Height, CASE WHEN dt.DeviceType='Chassis' THEN true WHEN dt.Model LIKE '%SLED%' OR '%BLADE%' THEN false ELSE 'None' END AS ParentStatus FROM fac_DeviceTemplate dt, fac_Manufacturer mf WHERE dt.ManufacturerID=mf.ManufacturerID",
+            "queryString":"SELECT dt.Model, mf.Name, dt.Height, CASE WHEN dt.DeviceType='Chassis' THEN true WHEN dt.Model LIKE '%SLED%' OR dt.Model LIKE '%BLADE%' THEN false ELSE 'None' END AS ParentStatus FROM fac_DeviceTemplate dt, fac_Manufacturer mf WHERE dt.ManufacturerID=mf.ManufacturerID",
             "outputMapping":{
                 "model":0,
                 "manufacturer":{
