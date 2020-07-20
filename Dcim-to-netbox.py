@@ -66,7 +66,11 @@ class apiEngine:
     def netboxRetrieve(self):
         retrievalURL = self.netboxAPIurl + "?limit=100000"
         response = self.client.get(retrievalURL, headers=self.retrieveHeaders)
-        jsonResponseDump = json.loads(response.text)
+        # We use response.content.decode('UTF-8') rather than response.text.
+        # For some reason, the "requests" library assumes some other encoding,
+        # and generates weird characters where accented characters should be.
+        # e.g. "Géopolis" becomes "GÃ©opolis".
+        jsonResponseDump = json.loads(response.content.decode('UTF-8'))
         if reQueryResponseFlag:
             print("+ API RESPONSE FOR REQUERY: \'" + retrievalURL + "\' Reads: \'" + str(jsonResponseDump) + "\'")
         return jsonResponseDump
