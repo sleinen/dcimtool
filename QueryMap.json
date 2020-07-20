@@ -51,7 +51,7 @@
             "querySubObjectID":"Racks",
             "sType":"dcim/",
             "sSubType":"racks/",
-            "queryString":"SELECT cb.Location, dc.Name, cr.Name, cb.CabinetHeight FROM fac_Cabinet cb, fac_CabRow cr, fac_DataCenter dc WHERE cb.DataCenterID=dc.DataCenterID AND cb.CabRowID=cr.CabRowID",
+            "queryString":"SELECT cb.Location, dc.Name, cr.Name, cb.CabinetHeight, CASE WHEN cb.U1Position = 'Top' THEN True ELSE False END AS desc_unit FROM fac_Cabinet cb, fac_CabRow cr, fac_DataCenter dc WHERE cb.DataCenterID=dc.DataCenterID AND cb.CabRowID=cr.CabRowID",
             "outputMapping":{
                 "name":0,
                 "site":{
@@ -63,6 +63,7 @@
                     "reQueryIndexHeader":2
                 },
                 "u_height":3
+                "desc_unit":4
             },
             "slugEnable":true
         },
