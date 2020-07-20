@@ -105,7 +105,7 @@ class QueryEngine:
                         elif row[(outputMapping[outParam])] == '0':
                             d[outParam] = False
                         else:
-                            d[outParam] = "None"
+                            del d[outParam]
                     else:
                         d[outParam] = row[(outputMapping[outParam])]
                 else:
